@@ -1,0 +1,12 @@
+{
+  "name": "claude-job-hunter",
+  "version": "1.0.0",
+  "description": "Claude Code plugin for end-to-end job application automation",
+  "author": "Rakshit Makan <rakshitmakan@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rakshitmakan/claude-job-hunter.git"
+  },
+  "keywords": ["claude-code", "plugin", "job-search", "resume", "automation"]
+}

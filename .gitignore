@@ -1,0 +1,19 @@
+# Sensitive credentials — never commit
+accounts.json
+
+# Generated application outputs
+applications/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.bcf
+*.run.xml
+*.out
+*.synctex.gz
+
+# OS files
+.DS_Store
+Thumbs.db

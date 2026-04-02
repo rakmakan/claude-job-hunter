@@ -1,0 +1,13 @@
+{
+  "name": "claude-job-hunter",
+  "description": "End-to-end job application automation: brainstorm preferences, discover jobs, tailor resumes, manage portal accounts, and auto-apply — all from Claude Code",
+  "version": "1.0.0",
+  "author": {
+    "name": "Rakshit Makan",
+    "email": "rakshitmakan@gmail.com"
+  },
+  "homepage": "https://github.com/rakshitmakan/claude-job-hunter",
+  "repository": "https://github.com/rakshitmakan/claude-job-hunter",
+  "license": "MIT",
+  "keywords": ["job-search", "resume", "cover-letter", "ats", "automation", "playwright", "latex"]
+}
