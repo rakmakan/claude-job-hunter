@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
-# JD Auto-Detection Hook
+# JD Auto-Detection Hook for Claude Code
 # Scans user prompt for job description patterns.
-# If 3+ patterns match, suggests using /job-tailor.
+# If 3+ patterns match, adds context suggesting /job-tailor.
+# MUST always exit 0 and output valid JSON.
 
-set -o pipefail
+INPUT=$(cat 2>/dev/null || true)
 
-# Read JSON input from stdin
-INPUT=$(cat 2>/dev/null) || INPUT=""
-
-# If empty input, exit silently
 if [ -z "$INPUT" ]; then
   echo '{"hookSpecificOutput":{}}'
   exit 0
 fi
 
-# Extract prompt field from JSON
 USER_PROMPT=$(echo "$INPUT" | python3 -c "
 import sys, json
 try:
@@ -22,17 +18,15 @@ try:
     print(d.get('prompt', d.get('message', '')))
 except:
     print('')
-" 2>/dev/null) || USER_PROMPT=""
+" 2>/dev/null || true)
 
-# If we couldn't extract a prompt, exit silently
 if [ -z "$USER_PROMPT" ]; then
   echo '{"hookSpecificOutput":{}}'
   exit 0
 fi
 
-# Count JD pattern matches
 MATCH_COUNT=0
-PROMPT_LOWER=$(echo "$USER_PROMPT" | tr '[:upper:]' '[:lower:]')
+PROMPT_LOWER=$(echo "$USER_PROMPT" | tr '[:upper:]' '[:lower:]' 2>/dev/null || true)
 
 for pattern in "responsibilities" "requirements" "qualifications" "about the role" \
   "what you.ll do" "what you.ll bring" "who you are" "nice to have" "must have" \
@@ -44,9 +38,8 @@ for pattern in "responsibilities" "requirements" "qualifications" "about the rol
   fi
 done
 
-# If 3+ patterns match, this is likely a job description
 if [ "$MATCH_COUNT" -ge 3 ]; then
-  echo "{\"hookSpecificOutput\":{\"additionalContext\":\"This message appears to contain a job description ($MATCH_COUNT JD indicators detected). Use the /job-tailor skill to tailor the user's resume and generate a cover letter for this position.\"}}"
+  echo "{\"hookSpecificOutput\":{\"additionalContext\":\"This message contains a job description ($MATCH_COUNT indicators detected). Use the /job-tailor skill to tailor the resume and generate a cover letter for this position.\"}}"
 else
   echo '{"hookSpecificOutput":{}}'
 fi
