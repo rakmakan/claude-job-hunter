@@ -1,0 +1,146 @@
+% Claude Job Hunter — Example Resume Template
+% This is a starter template for new users who don't have a LaTeX resume.
+% Replace all placeholder content with your own information.
+% Compile with: xelatex resume.tex
+
+\documentclass[a4paper,10pt]{article}
+
+%%%%%%% --------------------------------------------------------------------------------------
+%%%%%%%  PREAMBLE — DO NOT MODIFY (unless changing fonts)
+%%%%%%% --------------------------------------------------------------------------------------
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{csquotes}
+\usepackage{tabularx}
+\hypersetup{colorlinks=true,urlcolor=black}
+\usepackage[11pt]{moresize}
+\usepackage{fontawesome5}
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage[inline]{enumitem}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{anyfontsize}
+
+%%% Set Margins
+\usepackage[margin=1cm, top=1cm]{geometry}
+
+%%% Set Fonts — Update these paths if using different fonts
+\setmainfont[
+BoldFont=SourceSansPro-Semibold.otf,
+ItalicFont=SourceSansPro-RegularIt.otf
+]{SourceSansPro-Regular.otf}
+\setsansfont{SourceSansPro-Semibold.otf}
+
+%%% Page Style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%%% URL Style
+\urlstyle{same}
+
+%%% Indentation
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%%% Colors
+\definecolor{UI_blue}{RGB}{32, 64, 151}
+
+%%% Section Formatting
+\titleformat{\section}{
+\color{UI_blue} \scshape \raggedright \large
+}{}{0em}{}[\vspace{-10pt} \hrulefill \vspace{-6pt}]
+
+%%% Subtext
+\newcommand{\subtext}[1]{#1\par\vspace{-0.2cm}}
+
+%%% Item Spacing
+\setlist[itemize]{align=parleft,left=0pt..1em}
+
+%%% Tight Itemize
+\newenvironment{zitemize}{
+\begin{itemize}\itemsep0pt \parskip0pt \parsep1pt}
+{\end{itemize}\vspace{-0.5cm}}
+
+%%% Skills Bold
+\newcommand{\hskills}[1]{\textbf{\bfseries #1}}
+
+%%% Subsection Formatting
+\titleformat{\subsection}{\vspace{-0.1cm}
+\bfseries \fontsize{11pt}{2cm}}{}{0em}{}[\vspace{-0.2cm}]
+
+%%%%%%% --------------------------------------------------------------------------------------
+%%%%%%%  END PREAMBLE
+%%%%%%% --------------------------------------------------------------------------------------
+
+\begin{document}
+
+%%%%%%% HEADER %%%%%%%
+\begin{center}
+    {\Huge Your Full Name} \\
+    \vspace{0.05cm}
+    {\large Your Current Title} \\
+    \vspace{0.15cm}
+    {\small
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l l l l @{}}
+        \faPhone* \ Your-Phone &
+        \faEnvelope \ \href{mailto:your@email.com}{\underline{your@email.com}} &
+        \faLinkedin \ \href{https://linkedin.com/in/yourprofile}{\underline{linkedin.com/in/yourprofile}} &
+        \faGithub \ \href{https://github.com/yourusername}{\underline{github.com/yourusername}}
+    \end{tabular*}
+    }
+\end{center}
+
+\vspace{0.2cm}
+
+% Professional summary — 2-3 lines highlighting your experience, specializations, and value
+\paragraph{Your professional summary here. Senior [Role] with [N]+ years of experience in [domain]. Specialized in [key areas]. Proven track record in [notable achievements]. [Degree] in [Field].}
+
+%%%%%%% EXPERIENCE %%%%%%%
+\section{Experience}
+
+\subsection*{Your Current Title \hfill Start Date --- Present}
+\subtext{Company Name \hfill City, Country}
+    \begin{zitemize}
+    \item Achievement 1 with quantified impact (e.g., reduced X by Y\%)
+    \item Achievement 2 demonstrating technical depth
+    \item Achievement 3 showing leadership or collaboration
+    \end{zitemize}
+
+\subsection*{Previous Title \hfill Start Date --- End Date}
+\subtext{Previous Company \hfill City, Country}
+    \begin{zitemize}
+    \item Achievement 1
+    \item Achievement 2
+    \end{zitemize}
+
+%%%%%%% EDUCATION %%%%%%%
+\section{Education}
+\subsection*{Degree Name \hfill Start --- End}
+\subtext{University Name \hfill City, Country}
+\begin{zitemize}
+    \item Notable achievement, thesis topic, or award
+\end{zitemize}
+
+%%%%%%% SKILLS %%%%%%%
+\section{Technical Skills}
+\begin{tabularx}{\textwidth}{@{}l@{\hspace{0.8em}}X@{}}
+\textbf{Languages:} & Language1, Language2, Language3 \\
+\textbf{Frameworks:} & Framework1, Framework2, Framework3 \\
+\textbf{Cloud \& Infra:} & Service1, Service2, Service3 \\
+\textbf{Tools:} & Tool1, Tool2, Tool3 \\
+\end{tabularx}
+
+\end{document}
