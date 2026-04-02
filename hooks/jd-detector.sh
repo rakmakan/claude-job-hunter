@@ -3,8 +3,15 @@
 # Scans user prompt for job description patterns.
 # If 3+ patterns match, suggests using /job-tailor.
 
-# Read user prompt from stdin
-USER_PROMPT=$(cat)
+# Read JSON input from stdin, extract the user prompt
+INPUT=$(cat 2>/dev/null || echo "")
+USER_PROMPT=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('prompt',''))" 2>/dev/null || echo "")
+
+# If we couldn't extract a prompt, exit silently
+if [ -z "$USER_PROMPT" ]; then
+  printf '{\n  "hookSpecificOutput": {}\n}\n'
+  exit 0
+fi
 
 # Define JD indicator patterns (case-insensitive)
 PATTERNS=(
@@ -41,11 +48,8 @@ done
 
 # If 3+ patterns match, this is likely a job description
 if [ "$MATCH_COUNT" -ge 3 ]; then
-  # Output additional context for Claude
   CONTEXT="This message appears to contain a job description ($MATCH_COUNT JD indicators detected). Use the /job-tailor skill to tailor the user's resume and generate a cover letter for this position."
-
   printf '{\n  "hookSpecificOutput": {\n    "additionalContext": "%s"\n  }\n}\n' "$CONTEXT"
 else
-  # No JD detected — pass through silently
   printf '{\n  "hookSpecificOutput": {}\n}\n'
 fi
